@@ -11,4 +11,8 @@ class MeasurementUnitsDataStorage : DataStorage<MeasurementUnit>() {
     fun setMeasurementUnits(units: Collection<MeasurementUnit>) {
         setItems(units) { it.id }
     }
+
+    fun getOtherUnits(unitId: Int): Collection<MeasurementUnit> {
+        return itemsMap.values.filter { it.id != unitId }
+    }
 }

@@ -16,8 +16,12 @@ open class DataStorage<T> {
     protected inline fun setItems(items: Iterable<T>, keyFromItemFunction : (T) -> Int){
         itemsMap.clear()
         for (item in items) {
-            itemsMap.put(keyFromItemFunction.invoke(item), item)
+            itemsMap[keyFromItemFunction.invoke(item)] = item
         }
+    }
+
+    fun getItem(id : Int) : T? {
+        return itemsMap[id]
     }
 
     fun reset() {
