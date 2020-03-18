@@ -1,4 +1,4 @@
-package com.timkhakimov.measurementunitconverters.domain.model
+package com.timkhakimov.measurementunitconverters.domain.data.model
 
 /**
  * Created by Timur Khakimov on 18.03.2020
