@@ -7,6 +7,7 @@ import com.timkhakimov.measurementunitconverters.domain.data.storage.Measurement
  * Created by Timur Khakimov on 18.03.2020
  * Конвертирует значение по введенной ед-це измерения во все остальные ед-цы измерения этой же физической величины
  * Т.е. передаем значение 1 метр -> возвращает соответствующие значения для футов, дюймов и т.д.
+ * Если другие ед-цы измерения не найдены, возвращает только введенные данные
  */
 class UnitsConverter(private val measurementUnitsData : MeasurementUnitsDataStorage) {
 
