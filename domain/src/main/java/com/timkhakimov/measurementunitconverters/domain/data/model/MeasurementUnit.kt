@@ -9,5 +9,5 @@ data class MeasurementUnit(
     val unitSymbol: String,
     val name: String,
     val description: String,
-    val conversionFactor: Double
+    val conversionFactor: Double        //должно быть > 0, если 1.0 - базовая ед-ца измерения
 )
