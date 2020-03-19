@@ -19,7 +19,7 @@ open class DataStorage<T> {
         return itemsMap[id]
     }
 
-    fun reset() {
+    open fun reset() {
         itemsMap.clear()
     }
 }
