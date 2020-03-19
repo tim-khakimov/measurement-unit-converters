@@ -6,9 +6,9 @@ import com.timkhakimov.measurementunitconverters.domain.data.model.MeasurementUn
  * Created by Timur Khakimov on 18.03.2020
  * Единицы измерения
  */
-class MeasurementUnitsDataStorage : DataStorage<MeasurementUnit>() {
+open class MeasurementUnitsDataStorage : DataStorage<MeasurementUnit>() {
 
-    fun setMeasurementUnits(units: Collection<MeasurementUnit>) {
+    open fun setMeasurementUnits(units: Collection<MeasurementUnit>) {
         setItems(units) { it.id }
     }
 

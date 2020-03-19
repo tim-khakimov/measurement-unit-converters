@@ -9,11 +9,11 @@ import com.timkhakimov.measurementunitconverters.domain.data.storage.Measurement
  * Т.е. передаем значение 1 метр -> возвращает соответствующие значения для футов, дюймов и т.д.
  * Если другие ед-цы измерения не найдены, возвращает только введенные данные
  */
-class UnitsConverter(private val measurementUnitsData : MeasurementUnitsDataStorage) {
+open class UnitsConverter(private val measurementUnitsData : MeasurementUnitsDataStorage) {
 
     private val unitValuesConverter = UnitValuesConverter()
 
-    fun convertUnitValue(unitId: Int, value : Double) : MutableMap<Int, Double> {
+    open fun convertUnitValue(unitId: Int, value : Double) : MutableMap<Int, Double> {
         val unitsValuesMap = mutableMapOf<Int, Double>()
         unitsValuesMap[unitId] = value
         val inputUnit = measurementUnitsData.getItem(unitId) ?: return unitsValuesMap
