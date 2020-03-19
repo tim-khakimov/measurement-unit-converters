@@ -30,11 +30,7 @@ class MeasurementUnitsInteractorTest {
     @Mock
     lateinit var unitsOutputBoundary: OutputBoundary<Resource<List<MeasurementUnit>>>
     @Mock
-    lateinit var unitValuesOutputBoundary: OutputBoundary<Map<Int, Double>>
-    @Mock
     lateinit var measurementUnitsDataStorage: MeasurementUnitsDataStorage
-    @Mock
-    lateinit var unitsConverter : UnitsConverter
     @get:Rule
     val mockitoRule = MockitoJUnit.rule()
     val unitsList: MutableList<MeasurementUnit> = mutableListOf(
@@ -49,9 +45,7 @@ class MeasurementUnitsInteractorTest {
         measurementUnitsInteractor = MeasurementUnitsInteractor()
         measurementUnitsInteractor.repository = repository
         measurementUnitsInteractor.unitsOutputBoundary = unitsOutputBoundary
-        measurementUnitsInteractor.unitValuesOutputBoundary = unitValuesOutputBoundary
         measurementUnitsInteractor.measurementUnitsDataStorage = measurementUnitsDataStorage
-        measurementUnitsInteractor.unitsConverter = unitsConverter
     }
 
     @Test
@@ -62,11 +56,8 @@ class MeasurementUnitsInteractorTest {
         verify(repository).getUnits(anyInt(), anyNonNull())
         verify(unitsOutputBoundary, atMost(2)).sendData(anyNonNull())
         verify(measurementUnitsDataStorage).setMeasurementUnits(unitsList)
-        verify(unitsConverter).convertUnitValue(anyInt(), anyDouble())
-        verify(unitValuesOutputBoundary).sendData(anyMap())
         verifyNoMoreInteractions(repository)
         verifyNoMoreInteractions(unitsOutputBoundary)
-        verifyNoMoreInteractions(unitValuesOutputBoundary)
     }
 
     @Test
@@ -79,17 +70,6 @@ class MeasurementUnitsInteractorTest {
         verifyNoMoreInteractions(repository)
         verifyNoMoreInteractions(measurementUnitsDataStorage)
         verifyNoMoreInteractions(unitsOutputBoundary)
-        verifyZeroInteractions(unitValuesOutputBoundary)
-    }
-
-    @Test
-    fun checkConvertingValues() {
-        measurementUnitsInteractor.setMeasurementUnitValue(1, 2.0)
-        verifyZeroInteractions(repository)
-        verifyZeroInteractions(unitsOutputBoundary)
-        verifyZeroInteractions(measurementUnitsDataStorage)
-        verify(unitsConverter).convertUnitValue(1, 2.0)
-        verify(unitValuesOutputBoundary).sendData(anyMap())
     }
 
     private fun setUpSuccessResponse() {

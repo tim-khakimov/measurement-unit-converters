@@ -19,9 +19,7 @@ class MeasurementUnitsInteractor {
 
     lateinit var repository: Repository
     lateinit var unitsOutputBoundary: OutputBoundary<Resource<List<MeasurementUnit>>>
-    lateinit var unitValuesOutputBoundary: OutputBoundary<Map<Int, Double>>
     lateinit var measurementUnitsDataStorage: MeasurementUnitsDataStorage
-    lateinit var unitsConverter: UnitsConverter
 
     fun loadMeasurementUnits(quantityId: Int) {
         measurementUnitsDataStorage.reset()
@@ -37,12 +35,5 @@ class MeasurementUnitsInteractor {
     private fun setMeasurementUnits(units: List<MeasurementUnit>) {
         measurementUnitsDataStorage.setMeasurementUnits(units)
         unitsOutputBoundary.sendData(Resource(Status.SUCCESS, units))
-        if (units.isNotEmpty()) {
-            setMeasurementUnitValue(units[0].id, 1.0)
-        }
-    }
-
-    fun setMeasurementUnitValue(unitId: Int, value: Double) {
-        unitValuesOutputBoundary.sendData(unitsConverter.convertUnitValue(unitId, value))
     }
 }
