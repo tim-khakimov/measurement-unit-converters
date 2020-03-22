@@ -17,6 +17,7 @@ buildscript {
         mockito_version = '2.23.4'
         rx_android_version = '2.0.2'
         rx_java_version = '2.2.9'
+        dagger_version = '2.20'
     }
     repositories {
         google()
