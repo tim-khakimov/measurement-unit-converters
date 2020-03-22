@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.timkhakimov.measurementunitconverters.presentation.viewmodel.QuantitiesViewModel" />
+
+        <variable
+            name="item"
+            type="com.timkhakimov.measurementunitconverters.presentation.model.QuantityListItem" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_margin="30dp"
+        android:background="@color/light"
+        android:onClick="@{() -> viewModel.selectQuantity(item)}">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{item.title}"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </FrameLayout>
+</layout>
