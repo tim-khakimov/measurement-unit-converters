@@ -1,4 +1,4 @@
-package com.timkhakimov.measurementunitconverters.di.modules.presentation
+package com.timkhakimov.measurementunitconverters.di.modules.presentation.livedata
 
 import androidx.lifecycle.MutableLiveData
 import com.timkhakimov.measurementunitconverters.presentation.navigation.Screen
@@ -15,7 +15,7 @@ class LiveDataModule {
 
     @Singleton
     @Provides
-    fun getScreenSwitchQueueLiveData() : MutableLiveData<Queue<Screen>> {
+    fun getScreenSwitchQueueLiveData(): MutableLiveData<Queue<Screen>> {
         val queue = ArrayDeque<Screen>()
         val liveData = MutableLiveData<Queue<Screen>>()
         liveData.value = queue
