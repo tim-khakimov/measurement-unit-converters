@@ -1,6 +1,7 @@
 package com.timkhakimov.measurementunitconverters.di
 
 import com.timkhakimov.measurementunitconverters.di.modules.presentation.PresentationModule
+import com.timkhakimov.measurementunitconverters.presentation.viewmodel.MainViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,4 +11,5 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(PresentationModule::class))
 interface AppComponent {
+    fun inject(mainViewModel: MainViewModel)
 }
