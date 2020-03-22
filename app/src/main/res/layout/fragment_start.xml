@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="startViewModel"
+            type="com.timkhakimov.measurementunitconverters.presentation.viewmodel.StartViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tvNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/light_light"
+            android:onClick="@{() -> startViewModel.onStartClicked()}"
+            android:padding="30dp"
+            android:text="@string/start"
+            android:textAllCaps="true" />
+    </FrameLayout>
+</layout>
