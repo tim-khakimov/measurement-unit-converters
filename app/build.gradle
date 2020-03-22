@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
@@ -12,8 +14,8 @@ android {
         applicationId "com.timkhakimov.measurementunitconverters"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "0.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -21,6 +23,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -33,7 +38,14 @@ dependencies {
     implementation "com.google.android.material:material:$app_compat_version"
     implementation "androidx.core:core-ktx:$android_core_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    kapt "com.android.databinding:compiler:$compiler_version"
+    //test
     testImplementation "junit:junit:$junit_version"
+    //androidTest
     androidTestImplementation "androidx.test:runner:$android_test_runner_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+}
+
+kapt {
+    generateStubs = true
 }
