@@ -8,8 +8,10 @@ import com.timkhakimov.measurementunitconverters.domain.data.model.Quantity
 import com.timkhakimov.measurementunitconverters.domain.data.source.Repository
 import com.timkhakimov.measurementunitconverters.domain.data.storage.MeasurementUnitsDataStorage
 import com.timkhakimov.measurementunitconverters.domain.data.storage.QuantitiesDataStorage
+import com.timkhakimov.measurementunitconverters.domain.entity.UnitsConverter
 import com.timkhakimov.measurementunitconverters.domain.interactors.MeasurementUnitsInteractor
 import com.timkhakimov.measurementunitconverters.domain.interactors.QuantitiesInteractor
+import com.timkhakimov.measurementunitconverters.domain.interactors.UnitValuesInteractor
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -51,6 +53,17 @@ class DomainModule {
         interactor.repository = repository
         interactor.unitsOutputBoundary = unitsOutputBoundary
         interactor.measurementUnitsDataStorage = measurementUnitsDataStorage
+        return interactor
+    }
+
+    @Provides
+    fun getUnitValuesInteractor(
+        unitValuesOutputBoundary: OutputBoundary<Map<Int, Double>>,
+        measurementUnitsDataStorage: MeasurementUnitsDataStorage
+    ): UnitValuesInteractor {
+        val interactor = UnitValuesInteractor()
+        interactor.unitValuesOutputBoundary = unitValuesOutputBoundary
+        interactor.unitsConverter = UnitsConverter(measurementUnitsDataStorage)
         return interactor
     }
 }

@@ -5,6 +5,7 @@ import com.timkhakimov.measurementunitconverters.domain.boundary.OutputBoundary
 import com.timkhakimov.measurementunitconverters.domain.boundary.Resource
 import com.timkhakimov.measurementunitconverters.domain.data.model.MeasurementUnit
 import com.timkhakimov.measurementunitconverters.domain.data.model.Quantity
+import com.timkhakimov.measurementunitconverters.presentation.livedata.CurrentValuesLiveData
 import com.timkhakimov.measurementunitconverters.presentation.livedata.MeasurementUnitValuesLiveData
 import com.timkhakimov.measurementunitconverters.presentation.livedata.QuantityListItemsLiveData
 import dagger.Module
@@ -24,5 +25,10 @@ class OutputBoundariesModule {
     @Provides
     fun getMeasurementUnitsBoundary(measurementUnitValuesLiveData: MeasurementUnitValuesLiveData): OutputBoundary<Resource<List<MeasurementUnit>>> {
         return measurementUnitValuesLiveData
+    }
+
+    @Provides
+    fun getUnitValuesOutputBoundary(currentValuesLiveData: CurrentValuesLiveData): OutputBoundary<Map<Int, Double>> {
+        return currentValuesLiveData
     }
 }

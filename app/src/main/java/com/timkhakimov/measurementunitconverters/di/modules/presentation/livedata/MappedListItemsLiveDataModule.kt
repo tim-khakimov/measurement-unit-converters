@@ -3,6 +3,7 @@ package com.timkhakimov.measurementunitconverters.di.modules.presentation.liveda
 import com.timkhakimov.measurementunitconverters.di.modules.presentation.MappersModule
 import com.timkhakimov.measurementunitconverters.domain.data.model.MeasurementUnit
 import com.timkhakimov.measurementunitconverters.domain.data.model.Quantity
+import com.timkhakimov.measurementunitconverters.presentation.livedata.CurrentValuesLiveData
 import com.timkhakimov.measurementunitconverters.presentation.livedata.MeasurementUnitValuesLiveData
 import com.timkhakimov.measurementunitconverters.presentation.livedata.QuantityListItemsLiveData
 import com.timkhakimov.measurementunitconverters.presentation.mappers.Mapper
@@ -16,7 +17,7 @@ import javax.inject.Singleton
 /**
  * Created by Timur Khakimov on 22.03.2020
  */
-@Module(includes = arrayOf(MappersModule::class))
+@Module(includes = arrayOf(MappersModule::class, CurrentValuesLiveDataModule::class))
 class MappedListItemsLiveDataModule {
 
     @Singleton
@@ -27,7 +28,14 @@ class MappedListItemsLiveDataModule {
 
     @Singleton
     @Provides
-    fun getMeasurementUnitValuesLiveData(mapper: Mapper<MeasurementUnit, MeasurementUnitValue>): MeasurementUnitValuesLiveData {
-        return MeasurementUnitValuesLiveData(ResourceListMapper(mapper))
+    fun getMeasurementUnitValuesLiveData(
+        mapper: Mapper<MeasurementUnit, MeasurementUnitValue>,
+        currentValuesLiveData: CurrentValuesLiveData
+    ): MeasurementUnitValuesLiveData {
+        val liveData = MeasurementUnitValuesLiveData(ResourceListMapper(mapper))
+        currentValuesLiveData.observeForever { unitValuesMap ->
+            liveData.updateValues(unitValuesMap)
+        }
+        return liveData
     }
 }
