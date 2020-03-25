@@ -1,5 +1,6 @@
 package com.timkhakimov.measurementunitconverters.di.modules.domain
 
+import com.timkhakimov.measurementunitconverters.domain.data.storage.MeasurementUnitsDataStorage
 import com.timkhakimov.measurementunitconverters.domain.data.storage.QuantitiesDataStorage
 import dagger.Module
 import dagger.Provides
@@ -15,5 +16,11 @@ class StorageModule {
     @Provides
     fun getQuantitiesDataStorage() : QuantitiesDataStorage {
         return QuantitiesDataStorage()
+    }
+
+    @Singleton
+    @Provides
+    fun getMeasurementUnitsDataStorage() : MeasurementUnitsDataStorage {
+        return MeasurementUnitsDataStorage()
     }
 }
