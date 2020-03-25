@@ -2,6 +2,7 @@ package com.timkhakimov.measurementunitconverters.di.modules.presentation
 
 import com.timkhakimov.measurementunitconverters.di.modules.presentation.livedata.LiveDataModule
 import com.timkhakimov.measurementunitconverters.di.modules.presentation.livedata.MappedListItemsLiveDataModule
+import com.timkhakimov.measurementunitconverters.di.modules.presentation.livedata.SelectedItemsLiveDataModule
 import dagger.Module
 
 /**
@@ -9,7 +10,7 @@ import dagger.Module
  */
 @Module(
     includes = arrayOf(
-        LiveDataModule::class, MappedListItemsLiveDataModule::class
+        LiveDataModule::class, MappedListItemsLiveDataModule::class, SelectedItemsLiveDataModule::class
     )
 )
 class PresentationModule {
