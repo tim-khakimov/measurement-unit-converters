@@ -7,6 +7,7 @@ import com.timkhakimov.measurementunitconverters.databinding.FragmentSelectedQua
 import com.timkhakimov.measurementunitconverters.presentation.model.MeasurementUnitValue
 import com.timkhakimov.measurementunitconverters.presentation.viewmodel.SelectedQuantityViewModel
 import com.timkhakimov.measurementunitconverters.ui.adapters.DataBindingRecyclerViewAdapter
+import com.timkhakimov.measurementunitconverters.ui.adapters.DataBindingRecyclerViewHolder
 
 /**
  * Created by Timur Khakimov on 25.03.2020
@@ -35,6 +36,11 @@ class SelectedQuantityFragment : BaseFragment<FragmentSelectedQuantityBinding>()
     }
 
     private class MeasurementUnitsValuesAdapter(val selectedQuantityViewModel: SelectedQuantityViewModel) : DataBindingRecyclerViewAdapter<MeasurementUnitValue>() {
+
+        override fun onBindViewHolder(holder: DataBindingRecyclerViewHolder, position: Int) {
+            super.onBindViewHolder(holder, position)
+            holder.bind(BR.selectedQuantityViewModel, selectedQuantityViewModel)
+        }
 
         override fun getLayoutRes(viewType: Int): Int {
             return R.layout.view_measurement_unit_value

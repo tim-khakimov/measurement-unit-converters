@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="selectedQuantityViewModel"
+            type="com.timkhakimov.measurementunitconverters.presentation.viewmodel.SelectedQuantityViewModel" />
+
+        <variable
             name="unitValue"
             type="com.timkhakimov.measurementunitconverters.presentation.model.MeasurementUnitValue" />
     </data>
@@ -39,6 +43,7 @@
             android:paddingRight="12dp"
             android:textColor="@color/dark_text"
             android:textSize="20sp"
-            android:text="@{unitValue.currentValue}"/>
+            android:text="@{unitValue.currentValue}"
+            app:singleStringTextWatcher="@{s -> selectedQuantityViewModel.handleEditedValue(unitValue, s)}"/>
     </LinearLayout>
 </layout>
