@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.timkhakimov.measurementunitconverters.presentation.navigation.Screen
 import com.timkhakimov.measurementunitconverters.ui.fragments.EmptyFragment
 import com.timkhakimov.measurementunitconverters.ui.fragments.QuantitiesFragment
+import com.timkhakimov.measurementunitconverters.ui.fragments.SelectedQuantityFragment
 import com.timkhakimov.measurementunitconverters.ui.fragments.StartFragment
 
 /**
@@ -14,6 +15,7 @@ class BaseFragmentsFactory : FragmentsFactory {
         return when(screen) {
             Screen.START -> StartFragment()
             Screen.QUANTITIES -> QuantitiesFragment()
+            Screen.SELECTED_QUANTITY -> SelectedQuantityFragment()
             else -> EmptyFragment()
         }
     }
